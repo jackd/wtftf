@@ -27,6 +27,7 @@ if tf.version.VERSION < "2.4":
     row_starts = layered(tf.RaggedTensor.row_starts)
     value_rowids = layered(tf.RaggedTensor.value_rowids)
     to_tensor = layered(tf.RaggedTensor.to_tensor)
+    nrows = layered(tf.RaggedTensor.nrows)
 
 else:
     # attrs
@@ -56,3 +57,6 @@ else:
 
     def to_tensor(self, *args, **kwargs):
         return self.to_tensor(*args, **kwargs)
+
+    def nrows(self):
+        return self.nrows()
