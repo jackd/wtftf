@@ -15,32 +15,6 @@ pip install -e wtftf
 
 See [examples](examples) for example usage.
 
-### Random behaviour with `[get|set]_global_generator`
-
-One might think that `tf.random.get_global_generator` would set the generator used by operations like `tf.random.uniform`. One would be wrong.
-
-```python
-import tensorflow as tf
-
-import wtftf
-
-tf.random.set_global_generator(tf.random.Generator.from_seed(0))
-u0 = tf.random.uniform(())
-tf.random.set_global_generator(tf.random.Generator.from_seed(0))
-u1 = tf.random.uniform(())
-assert u0 == u1  # fails
-```
-
-`wtftf.random` ops fix this by calling `tf.random.get_random_generator().random` (or other methods) under the hood.
-
-```python
-tf.random.set_global_generator(tf.random.Generator.from_seed(0))
-u0 = wtftf.random.uniform(())
-tf.random.set_global_generator(tf.random.Generator.from_seed(0))
-u1 = wtftf.random.uniform(())
-assert u0 == u1  # succeeds
-```
-
 ### Composite Tensors with keras layers
 
 [This issue](https://github.com/tensorflow/tensorflow/issues/27170) has been open for over a year and with tf 2.4 composite tensor support for building keras models with the functional API looks like it's going in the wrong direction.
