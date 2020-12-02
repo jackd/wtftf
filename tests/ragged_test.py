@@ -12,7 +12,8 @@ class RaggedLayersTest(tf.test.TestCase):
                 row_splits = tf.keras.Input((), dtype=tf.int32)
                 args = (values, row_splits)
                 tf.keras.Model(
-                    args, tf.RaggedTensor.from_row_splits(*args, validate=False),
+                    args,
+                    tf.RaggedTensor.from_row_splits(*args, validate=False),
                 )
 
     def test_wtftf_model_construction(self):

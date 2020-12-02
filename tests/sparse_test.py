@@ -12,7 +12,8 @@ class SparseLayersTest(tf.test.TestCase):
                 values = tf.keras.Input((), dtype=tf.float32)
                 args = (indices, values)
                 tf.keras.Model(
-                    args, tf.SparseTensor(*args, dense_shape=(5, 5)),
+                    args,
+                    tf.SparseTensor(*args, dense_shape=(5, 5)),
                 )
 
     def test_wtftf_model_construction(self):

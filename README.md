@@ -17,7 +17,7 @@ See [examples](examples) for example usage.
 
 ### Composite Tensors with keras layers
 
-[This issue](https://github.com/tensorflow/tensorflow/issues/27170) has been open for over a year and with tf 2.4 composite tensor support for building keras models with the functional API looks like it's going in the wrong direction.
+[This issue](https://github.com/tensorflow/tensorflow/issues/27170) has been open for over a year. TF 2.4 looks like it's going in the right direction. Until a stable 2.4 release, this repository aims to make building keras models with compound tensors easier.
 
 Example that DOES NOT WORK
 
@@ -47,7 +47,7 @@ tf.keras.Model(args, ragged_layers.from_row_splits(*args))
 
 ### `meta.layered`
 
-A convenient way of wrapping a function with a `tf.keras.layers.Lambda` without losing the signature, name etc. This is mostly used for composite tensor ops discussed above, but can also be useful for wrapping `tf.py_function` or `tf.numpy_function` calls in `tf < 2.4`. See [examples/layer_wrapper.py](examples/layer_wrapper.py).
+A convenient way of wrapping a function with a `tf.keras.layers.Lambda` without losing the signature, name etc. This is mostly used for composite tensor ops discussed above, but can also be useful for wrapping `tf.py_function` or `tf.numpy_function` calls in `tf < 2.4`. See [examples/layer_wrapper.py](examples/layer_wrapper.py). For `tf >= 2.4` this does nothing except for classes (e.g. `tf.SparseTensor`).
 
 ## Pre-commit
 
